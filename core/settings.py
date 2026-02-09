@@ -14,10 +14,12 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-local-dev-key-change-in-pr
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 allowed_hosts_env = os.getenv("ALLOWED_HOSTS", "")
-if allowed_hosts_env.strip():
-    ALLOWED_HOSTS = [h.strip() for h in allowed_hosts_env.split(",") if h.strip()]
-else:
-    ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com"]
+hosts_from_env = [h.strip() for h in allowed_hosts_env.split(",") if h.strip()]
+default_hosts = ["127.0.0.1", "localhost", ".onrender.com"]
+render_external_host = os.getenv("RENDER_EXTERNAL_HOSTNAME", "").strip()
+if render_external_host:
+    default_hosts.append(render_external_host)
+ALLOWED_HOSTS = sorted(set(hosts_from_env + default_hosts))
 
 csrf_origins_env = os.getenv("CSRF_TRUSTED_ORIGINS", "")
 CSRF_TRUSTED_ORIGINS = [u.strip() for u in csrf_origins_env.split(",") if u.strip()]
