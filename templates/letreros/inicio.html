@@ -1,0 +1,321 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ empresa }} | Letreros Neon a Medida</title>
+    <meta name="description" content="Letreros neon para negocios y proyectos personales. Asesoria personalizada y fabricacion profesional.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&family=Satisfy&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Barra superior -->
+    <div class="topbar">
+        <p>Asesoria personalizada real para que tu letrero venda mas</p>
+        <a href="https://wa.me/{{ telefono_whatsapp }}" target="_blank" rel="noopener">WhatsApp {{ telefono_legible }}</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">{{ empresa }}</div>
+        <nav>
+            <a href="#trabajos">Trabajos</a>
+            <a href="#asesoria">Asesoria</a>
+            <a href="#ventajas">Por que NeonGP</a>
+            <a href="#tipos">Tipos</a>
+            <a href="#disenador">Disenador</a>
+            <a href="#ubicacion">Ubicacion</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <a class="cta-head" href="https://wa.me/{{ telefono_whatsapp }}" target="_blank" rel="noopener">Cotizar</a>
+    </header>
+
+    <!-- Hero principal -->
+    <section class="hero" style="--hero-bg: url('{{ hero_bg }}');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="kicker">LETREROSGP | FABRICACION PRO</p>
+            <h1>Neon que se ve brutal y convierte visitas en clientes</h1>
+            <p>Diseno, fabricacion y asesoria profesional para negocios, eventos y marcas que quieren destacar de verdad.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#disenador">Crea tu letrero</a>
+                <a class="btn btn-ghost" href="#trabajos">Ver trabajos reales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Asesoria personalizada -->
+    <section id="asesoria" class="section section-light">
+        <div class="section-head">
+            <h2>Asesoria personalizada antes de fabricar</h2>
+            <p>No te vendemos solo "luces". Te ayudamos a elegir el tipo correcto segun espacio, objetivo y estilo de tu marca.</p>
+        </div>
+        <div class="asesoria-grid">
+            <article class="asesoria-card">
+                <h3>Como trabajamos contigo</h3>
+                <ul>
+                    {% for punto in asesoria_puntos %}
+                        <li>{{ punto }}</li>
+                    {% endfor %}
+                </ul>
+            </article>
+            <article class="asesoria-note">
+                <h3>Resultado esperado</h3>
+                <p>Tu letrero no solo se ve bien: comunica mejor, se recuerda mas y atrae mas mirada en el punto de venta.</p>
+                <a href="https://wa.me/{{ telefono_whatsapp }}?text=Hola%20quiero%20asesoria%20personalizada%20para%20mi%20letrero" target="_blank" rel="noopener">Solicitar asesoria ahora</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="trabajos" class="section">
+        <div class="section-head">
+            <h2>Trabajos hechos por {{ empresa }}</h2>
+            <p>Portafolio real de piezas ya fabricadas.</p>
+        </div>
+        <div class="gallery-grid">
+            {% for item in galeria %}
+                <article class="gallery-card">
+                    <img src="{{ item.url }}" alt="{{ item.titulo }}">
+                    <div class="gallery-info">
+                        <h3>{{ item.titulo }}</h3>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="empty">No hay imagenes en <code>imagenes/</code>.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Seccion parallax -->
+    <section class="parallax" style="--parallax-bg: url('{{ parallax_bg }}');">
+        <div class="parallax-shade"></div>
+        <div class="parallax-content">
+            <p class="kicker">DISENO A MEDIDA</p>
+            <h2>Tu idea, tu estilo, tu neon</h2>
+            <p>Creamos frases, logos y figuras personalizadas con combinacion de colores y acabados de alto impacto.</p>
+        </div>
+    </section>
+
+    <!-- Ventajas y comparativa -->
+    <section id="ventajas" class="section">
+        <div class="section-head">
+            <h2>Por que comprar con NeonGP</h2>
+            <p>Te damos asesoria, materiales correctos y una ejecucion pensada para durar, no solo para "verse bonito".</p>
+        </div>
+
+        <div class="trust-cards">
+            <article class="trust-card">
+                <h3>Asesoria personalizada</h3>
+                <p>Te ayudamos a definir tamano, contraste, tipografia y material segun tu espacio real.</p>
+            </article>
+            <article class="trust-card">
+                <h3>Fabricacion profesional</h3>
+                <p>Proceso ordenado, pruebas de iluminacion y ajustes de detalle antes de entrega.</p>
+            </article>
+            <article class="trust-card">
+                <h3>Acompanamiento directo</h3>
+                <p>Atencion por WhatsApp para resolver cambios, tiempos y seguimiento de tu pedido.</p>
+            </article>
+        </div>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Criterio</th>
+                        <th>NeonGP</th>
+                        <th>Opciones genericas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Asesoria antes de fabricar</td>
+                        <td>Si</td>
+                        <td>No siempre</td>
+                    </tr>
+                    <tr>
+                        <td>Diseno adaptado al negocio</td>
+                        <td>Si</td>
+                        <td>Plantillas limitadas</td>
+                    </tr>
+                    <tr>
+                        <td>Material sugerido por uso real</td>
+                        <td>Si</td>
+                        <td>Sin criterio tecnico</td>
+                    </tr>
+                    <tr>
+                        <td>Seguimiento por WhatsApp</td>
+                        <td>Directo</td>
+                        <td>Intermitente</td>
+                    </tr>
+                    <tr>
+                        <td>Cotizacion orientativa inmediata</td>
+                        <td>Si</td>
+                        <td>No</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Tipos y materiales -->
+    <section id="tipos" class="section section-light">
+        <div class="section-head">
+            <h2>Elige tu tecnologia y material</h2>
+            <p>Te explicamos rapido la diferencia para que tomes mejor decision.</p>
+        </div>
+
+        <div class="types-grid">
+            {% for tipo in neon_tipos %}
+                <article class="glass-card">
+                    <h3>{{ tipo.titulo }}</h3>
+                    <p>{{ tipo.descripcion }}</p>
+                    <p><strong>Estructura:</strong> {{ tipo.estructura }}</p>
+                </article>
+            {% endfor %}
+        </div>
+
+        <div class="materials-grid">
+            {% for material in materiales_info %}
+                <article class="material-card">
+                    <h3>{{ material.nombre }}</h3>
+                    <p>{{ material.descripcion }}</p>
+                    <p><strong>Calibres:</strong> {{ material.calibres }}</p>
+                    <p><strong>Uso ideal:</strong> {{ material.uso }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Disenador -->
+    <section id="disenador" class="section designer">
+        <div class="preview-box">
+            <p class="preview-label">Vista previa</p>
+            <div class="neon-canvas">
+                <span id="previewText" class="font-script">Tu idea aqui</span>
+            </div>
+            <p class="price-line">Desde <strong id="previewPrice">$0 MXN</strong></p>
+            <p class="meters-line">Metros estimados de neon: <strong id="previewMeters">-- m</strong></p>
+            <p class="price-help">Estimado rapido. Precio final se confirma por WhatsApp con asesoria.</p>
+        </div>
+
+        <div class="form-box">
+            <h2>Disena tu letrero</h2>
+
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <p class="message {{ message.tags }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="post" class="designer-form">
+                {% csrf_token %}
+                <div class="grid-2">
+                    <label>Nombre{{ form.nombre }}</label>
+                    <label>WhatsApp{{ form.whatsapp }}</label>
+                </div>
+
+                <label>Correo (opcional){{ form.correo }}</label>
+                <label>Texto del letrero{{ form.texto_letrero }}</label>
+
+                <div class="grid-3">
+                    <label>Tipo de neon{{ form.tipo_neon }}</label>
+                    <label>Material base{{ form.material }}</label>
+                    <label>Tipo de proyecto{{ form.tipo_proyecto }}</label>
+                </div>
+
+                <div class="grid-3">
+                    <label>Tipografia{{ form.tipografia }}</label>
+                    <label>Nivel de detalle{{ form.nivel_detalle }}</label>
+                    <label>Color de letras{{ form.color_letras }}</label>
+                </div>
+
+                <div class="grid-2">
+                    <label>Ancho (cm){{ form.ancho_cm }}</label>
+                    <label>Alto (cm){{ form.alto_cm }}</label>
+                </div>
+
+                <label>Notas del proyecto{{ form.mensaje }}</label>
+                <button type="submit" class="btn btn-primary btn-full">Enviar solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Ubicacion -->
+    <section id="ubicacion" class="section section-light">
+        <div class="section-head">
+            <h2>Ubicacion y cobertura</h2>
+            <p>Base de atencion en Minatitlan, Veracruz. Atendemos cotizaciones por WhatsApp y proyectos en la region.</p>
+        </div>
+        <div class="map-card">
+            <iframe
+                title="Mapa Minatitlan Veracruz"
+                src="https://www.google.com/maps?q=Minatitlán,+Veracruz&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+        </div>
+        <div class="location-grid">
+            <article class="location-card">
+                <h3>Visitanos o solicita ruta</h3>
+                <p><strong>Zona base:</strong> Minatitlan, Veracruz</p>
+                <p><strong>Referencia:</strong> Atencion por cita para asesoria y levantamiento de proyecto.</p>
+                <div class="location-actions">
+                    <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Minatitlán,+Veracruz" target="_blank" rel="noopener">Como llegar</a>
+                    <a class="btn btn-ghost" href="https://wa.me/{{ telefono_whatsapp }}?text=Hola%20quiero%20agendar%20asesoria%20en%20Minatitlan" target="_blank" rel="noopener">Agendar asesoria</a>
+                </div>
+            </article>
+
+            <article class="location-card">
+                <h3>Horario de atencion</h3>
+                <ul class="schedule-list">
+                    <li><span>Lunes a Viernes</span><strong>9:00 AM - 7:00 PM</strong></li>
+                    <li><span>Sabado</span><strong>9:00 AM - 3:00 PM</strong></li>
+                    <li><span>Domingo</span><strong>Solo citas</strong></li>
+                </ul>
+                <p><strong>Entrega promedio:</strong> 1 semana</p>
+                <p class="mini-note">Tambien atendemos cotizacion digital fuera de horario por WhatsApp.</p>
+            </article>
+        </div>
+
+        <div class="coverage-wrap">
+            <p class="coverage-title">Cobertura regional</p>
+            <div class="coverage-chips">
+                <span>Minatitlan</span>
+                <span>Coatzacoalcos</span>
+                <span>Cosoleacaque</span>
+                <span>Jaltipan</span>
+                <span>Acayucan</span>
+                <span>Nanchital</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section section-light">
+        <div class="section-head">
+            <h2>Preguntas frecuentes</h2>
+        </div>
+        <div class="faq-list">
+            {% for item in faqs %}
+                <details class="faq-item">
+                    <summary>{{ item.pregunta }}</summary>
+                    <p>{{ item.respuesta }}</p>
+                </details>
+            {% endfor %}
+        </div>
+    </section>
+
+    <a class="floating-wa" href="https://wa.me/{{ telefono_whatsapp }}?text=Hola%20{{ empresa }}%2C%20quiero%20cotizar%20mi%20letrero" target="_blank" rel="noopener">
+        WhatsApp {{ telefono_legible }}
+    </a>
+
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
