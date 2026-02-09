@@ -73,3 +73,24 @@ Para migrar a PostgreSQL o SQL Server:
 ```bash
 python manage.py migrate
 ```
+
+## Deploy en Render
+Usa un servicio `Web Service` (Python) y configura:
+
+- `Build Command`:
+```bash
+bash build.sh
+```
+- `Start Command`:
+```bash
+gunicorn core.wsgi:application
+```
+
+Variables de entorno recomendadas en Render:
+- `SECRET_KEY` = clave segura de Django.
+- `DEBUG` = `False`
+- `ALLOWED_HOSTS` = `tu-app.onrender.com`
+- `CSRF_TRUSTED_ORIGINS` = `https://tu-app.onrender.com`
+
+Opcional para PostgreSQL en Render:
+- `DATABASE_URL` = se autoconfigura al conectar una Postgres instance.

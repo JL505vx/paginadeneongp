@@ -157,13 +157,29 @@ Ejecucion:
 python manage.py runserver 8023
 ```
 
-## 12. Migracion de Base de Datos
+## 12. Deploy en Render
+Configuracion usada:
+- `Build Command`: `bash build.sh`
+- `Start Command`: `gunicorn core.wsgi:application`
+
+Variables de entorno:
+- `SECRET_KEY`
+- `DEBUG=False`
+- `ALLOWED_HOSTS=tu-app.onrender.com`
+- `CSRF_TRUSTED_ORIGINS=https://tu-app.onrender.com`
+- `DATABASE_URL` (si conectas PostgreSQL de Render)
+
+Notas:
+- `build.sh` ejecuta install, collectstatic y migrate.
+- `whitenoise` sirve archivos estaticos en produccion.
+
+## 13. Migracion de Base de Datos
 Para pasar de SQLite a PostgreSQL/SQL Server:
 1. Actualizar `DATABASES` en `core/settings.py`.
 2. Instalar driver correspondiente.
 3. Ejecutar `python manage.py migrate`.
 
-## 13. Notas de Seguridad y Producto
+## 14. Notas de Seguridad y Producto
 - El cliente no ve desglose interno de costos de produccion.
 - La cotizacion mostrada es orientativa.
 - El precio final se valida por asesoria en WhatsApp.
